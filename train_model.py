@@ -8,7 +8,11 @@ from sklearn.metrics import accuracy_score
 
 # Load Dataset
 df = pd.read_csv("dataset.csv")
+# Load Dataset
 
+print(df.head(10))
+print("\nLabel Counts:")
+print(df["clickbait"].value_counts())
 # Remove missing values
 df = df.dropna()
 
