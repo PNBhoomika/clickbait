@@ -1,6 +1,9 @@
 import pandas as pd
 import pickle
+import streamlit as st
 
+st.title("Clickbait Detector")
+st.success("Deployment is working!")
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
