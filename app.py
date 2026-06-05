@@ -2,8 +2,29 @@ import pandas as pd
 import pickle
 import streamlit as st
 
-st.title("Clickbait Detector")
-st.success("Deployment is working!")
+model = pickle.load(open("model.pkl","rb"))
+vectorizer = pickle.load(open("vectorizer.pkl","rb"))
+
+st.set_page_config(
+    page_title="Clickbait Detector",
+    page_icon="📰",
+    layout="centered"
+)
+
+st.title("📰 Clickbait Detection System")
+
+headline = st.text_input("Enter Headline")
+
+if st.button("Analyze"):
+
+    transformed = vectorizer.transform([headline])
+
+    prediction = model.predict(transformed)
+
+    if prediction[0] == 1:
+        st.error("🚨 Clickbait Headline")
+    else:
+        st.success("✅ Quality Headline")
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier
